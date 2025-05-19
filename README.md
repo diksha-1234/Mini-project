@@ -1,77 +1,123 @@
 # 🖼️ Huffman Image Compressor
 
-A **lossless image compression and decompression tool** using the classic **Huffman algorithm**, designed specifically for `.bmp` and `.png` images. This project compresses images without any loss in quality, preserving the original data perfectly.
+A web app that **compresses and decompresses images** using the classic **Huffman algorithm**.  
+Supports `.bmp` and `.png` images for lossless compression and decompression.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- 🔒 **Lossless Compression:** Compress images without losing any data.
-- 🖼️ **Supports BMP & PNG:** Fully compatible with `.bmp` and `.png` formats.
-- 🔄 **Compression & Decompression:** Compress and restore images seamlessly.
-- ⚛️ **Frontend:** Built with **Vite + React** for a fast, modern UI.
-- 🎨 **Styling:** Uses **Tailwind CSS** for sleek design.
-- 🐍 **Backend:** Powered by **Flask** and **Flask-CORS**.
-- 📷 **Image Processing:** Uses **Pillow** for handling images.
-- 🔢 **Bit Handling:** Uses **bitarray** for efficient bit manipulation.
-- 🐍 **Virtual Environment:** Easy setup with isolated dependencies.
+- 🗜️ Compress and decompress `.bmp` and `.png` images using Huffman coding  
+- ⚛️ Built with a modern tech stack:
+  - Frontend: **Vite + React + Tailwind CSS**  
+  - Backend: **Flask + Flask-CORS**  
+- 🖼️ Image processing with **Pillow** and bit manipulation with **Bitarray**  
+- 🐍 Uses a Python **virtual environment** for clean dependency management
 
 ---
 
-## 🛠️ How It Works
+## ⚠️ Important Note on Compression Type
 
-1. **Compression:**
-   - Upload `.bmp` or `.png` image.
-   - Huffman algorithm analyzes pixel data, builds prefix tree, compresses to bitstream.
-2. **Decompression:**
-   - Upload compressed file.
-   - Backend reconstructs the original image losslessly.
+This project uses a custom logic where:
+
+- The **original input image is colored (RGB)**  
+- After compression and decompression, the output is a **grayscale version** of the original  
+- This means **color information is lost** during the process  
+- Because of this loss, the compression-decompression is **lossy**
+
+| Original Image  | Decompressed Image | Compression Type |
+|-----------------|--------------------|------------------|
+| Colored (RGB)   | Grayscale          | 🔴 Lossy         |
+
+> **Note:** While Huffman coding is generally lossless, this implementation results in grayscale images when decompressing colored inputs, making it a lossy process overall.
 
 ---
+## 🎯 Usage
+
+1. **Open the app** in your browser by navigating to:http://localhost:5173
+
+2. **Upload an image**  
+- Supported formats: `.bmp`, `.png`
+
+3. **Compress**  
+- Click the **Compress** button  
+- Download the generated `.huff` (or similar) compressed file
+
+4. **Decompress**  
+- Upload the compressed file  
+- Click the **Decompress** button  
+- The output image will be restored (in grayscale if the original was colored)
+
+5. **View or Save**  
+- Right‑click the decompressed image to save locally, or view it directly in the browser
+
+---
+
+> **Note:** Decompressed images from colored inputs will be in grayscale due to the current implementation’s lossy color handling.
+
+## 🛠️ Technologies Used
+
+### Frontend
+- Vite ⚡  
+- React ⚛️  
+- Tailwind CSS 🎨  
+
+### Backend
+- Flask 🐍  
+- Flask-CORS 🌐  
+- Pillow (PIL) 🖼️  
+- Bitarray 🔢  
+
+### Environment
+- Python virtual environment 🐍
 
 ## ⚠️ Limitations
 
-- Supports **only `.bmp` and `.png`** (lossless/uncompressed formats).
-- Compression ratios depend on image complexity.
-- No support for JPEG, GIF, or other formats yet.
+- The decompressed image loses color information and is restored as grayscale if the original was colored.  
+- Only `.bmp` and `.png` image formats are supported.  
+- Performance may degrade with very large images due to memory and processing constraints.  
+- Compression ratio depends heavily on image content and may not always be significant.  
 
 ---
 
-## 🌟 Future Scope
+## 🚀 Future Scope
 
-- ➕ Add more image formats like TIFF, GIF.
-- 📦 Batch processing for multiple images.
-- ⏳ Progress bars and improved UI feedback.
-- 🧮 Enhanced compression using other entropy coding methods.
-- 🖥️ CLI tool for offline usage.
-- 🔐 Add encryption for secure compressed storage.
+- Implement full lossless color compression to preserve RGB channels after decompression.  
+- Add support for more image formats like `.jpeg`, `.tiff`, etc.  
+- Improve UI/UX with preview functionality before and after compression.  
+- Enable batch processing for multiple images simultaneously.  
+- Optimize backend for faster compression and decompression speeds.  
+- Add detailed compression statistics and visual graphs for user insights.  
 
----
 
-## 📝 Setup & Usage
+## 🚀 Installation & Setup
 
-### Backend Setup
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/diksha-1234/huffman-image-compressor.git
+   cd huffman-image-compressor
+2. **Create &activate virtual environment**
+   cd backend
+   python3 -m venv venv
+   source venv/bin/activate       # On Windows: venv\Scripts\activate
+3. **Install backend dependencies**
+   pip install -r requirements.txt
+4. **Setup frontend**
+   cd frontend
+   npm install
+   npm run dev
+5. **Run Flask Backend**
+    python app.py
 
-```bash
-# Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
+## 🤝 Contributing
 
-# Install dependencies
-pip install -r requirements.txt
+Contributions, issues, and feature requests are welcome!  
+Feel free to check the [issues page](https://github.com/diksha-1234/huffman-image-compressor/issues).  
 
-# Run Flask server
-pyhton app.py
+To contribute:  
+1. Fork the repository  
+2. Create your feature branch (`git checkout -b feature/your-feature`)  
+3. Commit your changes (`git commit -m 'Add some feature'`)  
+4. Push to the branch (`git push origin feature/your-feature`)  
+5. Open a Pull Request  
 
-### Frontend Setup
-
-```bash
-# Navigate to frontend folder
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
