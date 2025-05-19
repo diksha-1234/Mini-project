@@ -112,16 +112,7 @@ This project uses a custom logic where:
 5. **Run Flask Backend**
     ```bash
     python app.py
+---
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/diksha-1234/huffman-image-compressor/issues).  
-
-To contribute:  
-1. Fork the repository  
-2. Create your feature branch (`git checkout -b feature/your-feature`)  
-3. Commit your changes (`git commit -m 'Add some feature'`)  
-4. Push to the branch (`git push origin feature/your-feature`)  
-5. Open a Pull Request  
-
+🙏 **Thank you for checking out the Huffman Image Compressor!**  
+If you find this project helpful, feel free to ⭐ the repo and contribute. Happy compressing! 🚀
