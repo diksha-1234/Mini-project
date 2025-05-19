@@ -1,0 +1,2 @@
+preserve color --rgb
+currently use grayscale (black and white)
