@@ -97,16 +97,20 @@ This project uses a custom logic where:
    git clone https://github.com/diksha-1234/huffman-image-compressor.git
    cd huffman-image-compressor
 2. **Create &activate virtual environment**
+   ```bash
    cd backend
    python3 -m venv venv
    source venv/bin/activate       # On Windows: venv\Scripts\activate
 3. **Install backend dependencies**
+   ```bash
    pip install -r requirements.txt
 4. **Setup frontend**
+    ```bash
    cd frontend
    npm install
    npm run dev
 5. **Run Flask Backend**
+    ```bash
     python app.py
 
 ## 🤝 Contributing
