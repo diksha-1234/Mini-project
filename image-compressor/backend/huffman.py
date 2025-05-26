@@ -2,7 +2,7 @@ from PIL import Image
 from bitarray import bitarray
 import pickle
 
-# A Huffman Tree Node
+# A Huffman Tree Node(general node defintion)
 class node:
     def __init__(self, freq, symbol, left=None, right=None):
         # frequency of symbol
@@ -20,6 +20,8 @@ class node:
         # tree direction (0/1)
         self.huff = ''
 
+
+#node definition specifically for image compression
 class pixel_node:
     #Define node construction method
     def __init__(self,right=None,left=None, parent=None, weight=0, code=None):
@@ -90,6 +92,7 @@ while len(nodes) > 1:
  
 printNodes(nodes[0])
 
+#It returns dictionary {pixel value:frequency}
 def pixel_frequency(pxl_lst):
     pxl_freq = {}
     for i in pxl_lst:
@@ -99,12 +102,14 @@ def pixel_frequency(pxl_lst):
             pxl_freq[i] += 1
     return pxl_freq
 
+#turn each pixel into huffman node
 def construct_node(pixel):
     node_lst = []
     for i in range(len(pixel)):
         node_lst.append(pixel_node(weight = pixel[i][1], code=str(pixel[i][0])))
     return node_lst
 
+#build a binary huffman tree based on pixel frequency
 def construct_tree(node_lst):
     node_lst = sorted(node_lst ,key=lambda pixel_node:pixel_node.weight) 
     while(len(node_lst) != 1):
@@ -166,7 +171,7 @@ def decoding(huff_file_path):
     height = data['height']
     encoding_table = data['encoding_table']
     encoded_bytes = data['encoded_data']
-
+    original_filename = data.get('filename') 
     
     bits = bitarray()
     bits.frombytes(encoded_bytes)
@@ -189,4 +194,4 @@ def decoding(huff_file_path):
             decode_image.putpixel((i, j), new_pixel[k])
             k += 1
 
-    return decode_image, new_pixel
+    return decode_image, new_pixel,original_filename

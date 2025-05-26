@@ -31,6 +31,7 @@ def compress_image():
     compressed_path = os.path.join(STATIC_FOLDER, 'compressed.huff')
     with open(compressed_path, 'wb') as f:
         pickle.dump({
+            'filename':file.filename,
             'encoding_table': encoding_table,
             'encoded_data': encoded_data,
             'width': width,
@@ -70,7 +71,7 @@ def decompress_image():
 
     # Decode image
     try:
-        decode_image, new_pixel = decoding(compressed_path)
+        decode_image, new_pixel,original_filename = decoding(compressed_path)
     except Exception as e:
         return jsonify({'error': f'Failed to decode: {str(e)}'}), 500
 
@@ -80,7 +81,7 @@ def decompress_image():
 
     # Load the original image to compare for similarity (from upload folder)
     try:
-        original_image_path = os.path.join(UPLOAD_FOLDER, os.listdir(UPLOAD_FOLDER)[0])
+        original_image_path = os.path.join(UPLOAD_FOLDER,original_filename)
         original_image = Image.open(original_image_path).convert('L')
         original_pixels = list(original_image.getdata())
 
