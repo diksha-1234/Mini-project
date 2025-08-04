@@ -95,7 +95,7 @@ This project uses a custom logic where:
 1. **Clone the repo:**
    ```bash
    git clone https://github.com/diksha-1234/huffman-image-compressor.git
-   cd huffman-image-compressor
+   cd image-compressor
 2. **Create &activate virtual environment**
    ```bash
    cd backend
